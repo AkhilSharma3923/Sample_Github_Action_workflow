@@ -5,10 +5,20 @@ on:
         branches:
             - main
             - test
-
+    pull_request: #Event: whenever a pull request is made to the repository on main branch
+        branches:
+            - main
 jobs:
     on-push: #job name
+        if: github.event_name == 'push' #condition to run the job only on push event
         runs-on: ubuntu-latest
         steps: #steps to be executed in the job
             - name: "Running on main push" # step 1
               run: echo "Running on main push"
+
+    on-pull-request: #job name
+        if: github.event_name == 'pull_request' #condition to run the job only on pull request event
+        runs-on: ubuntu-latest  
+        steps: #steps to be executed in the job
+            - name: "Running on pull request" # step 1
+              run: echo "Running on pull request"
